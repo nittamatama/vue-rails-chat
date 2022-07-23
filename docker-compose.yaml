@@ -12,7 +12,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./live-chat-rails/Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - ./live-chat-rails:/live-chat-rails
@@ -27,8 +27,9 @@ services:
   front:
     build:
       context: .
+      dockerfile: ./live-chat-vuejs/Dockerfile
     volumes:
-      - ./live-chat-vuejs:.
+      - ./live-chat-vuejs:/live-chat-vuejs
     ports:
       - '8080:8080'
     tty: true

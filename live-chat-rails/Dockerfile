@@ -7,19 +7,19 @@ RUN curl https://deb.nodesource.com/setup_14.x | bash
 
 RUN apt-get update -qq && apt-get install -y build-essential nodejs yarn mariadb-client && rm -rf /var/lib/apt/lists/*
 
-ENV APP_PATH /vuerailschat/live-chat-rails
+ENV APP_PATH /live-chat-rails
 
 RUN mkdir $APP_PATH
 
 WORKDIR $APP_PATH
 
-COPY Gemfile $APP_PATH/Gemfile
-COPY Gemfile.lock $APP_PATH/Gemfile.lock
+COPY /live-chat-rails/Gemfile $APP_PATH/Gemfile
+COPY /live-chat-rails/Gemfile.lock $APP_PATH/Gemfile.lock
 RUN bundle install
 
 COPY . $APP_PATH
 
-COPY entrypoint.sh /usr/bin/
+COPY /live-chat-rails/entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
