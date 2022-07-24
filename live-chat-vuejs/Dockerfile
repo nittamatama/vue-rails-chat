@@ -5,5 +5,5 @@ RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
 RUN apk update
-COPY package.json .
+COPY $APP_HOME/package.json $APP_HOME/package.json
 RUN npm install
