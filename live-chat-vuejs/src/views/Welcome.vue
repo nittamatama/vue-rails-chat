@@ -1,7 +1,8 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <TestComponent message="コンポーネントにデータが渡されている"/>
+    <TestComponent @toggle="toggle" message="コンポーネントにデータが渡されている"/>
+    <p v-if="isEnabled">こんにちは</p>
   </div>
 </template>
 
@@ -35,3 +36,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  p {
+    font-size: 20px;
+    color: red;
+  }
+</style>
