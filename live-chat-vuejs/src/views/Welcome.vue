@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>{{ title }}</h1>
-    <TestComponent />
+    <TestComponent message="コンポーネントにデータが渡されている"/>
   </div>
 </template>
 
