@@ -1,6 +1,27 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Welcome from '../views/Welcome'
 import Chatroom from '../views/Chatroom'
+import useValidate from '../auth/validate'
+
+const { validate } = useValidate()
+
+const requireAuth = async (to, from, next) => {
+  // eslint-disable-next-line no-unused-vars
+  const uid = window.localStorage.getItem('uid')
+  const client = window.localStorage.getItem('client')
+  const accessToken = window.localStorage.getItem('access-token')
+
+  if (!uid || !client || !accessToken) {
+    console.log('ログインしていません')
+    next({ name: 'Welcome' })
+    return
+  }
+
+  await validate()
+
+
+  next()
+}
 
 const routes = [
   {
@@ -11,7 +32,8 @@ const routes = [
   {
     path: '/chatroom',
     name: 'Chatroom',
-    component: Chatroom
+    component: Chatroom,
+    beforeEnter: requireAuth
   }
 ]
 
