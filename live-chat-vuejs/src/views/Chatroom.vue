@@ -3,7 +3,6 @@
     <Navbar />
     <ChatWindow :messages="messages" />
     <NewChatForm @connectCable="connectCable" />
-    <NewChatForm />
   </div>
 </template>
 
